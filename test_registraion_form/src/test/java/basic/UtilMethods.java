@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -60,14 +61,45 @@ public class UtilMethods {
 		}
 	}
 	
+	public void selectLanguage(WebDriver driver, By locator, String value)
+	{
+		List<WebElement> options = driver.findElements(locator);
+		for(WebElement option : options) {
+			if(option.getText().equalsIgnoreCase(value)) {
+				option.click();
+				break;
+			}
+		}
+	}
+	
 	public void selectDDByValue(WebDriver driver, By locator, String value)
 	{
-		
+		WebElement dd = driver.findElement(locator);
+		 Select dditems = new Select(dd);
+		 List<WebElement> options = dditems.getOptions();
+		 for(WebElement op : options)
+		 {
+			 if(op.getAttribute("value").equalsIgnoreCase(value))
+			 {
+				 dditems.selectByValue(value);
+				 break;
+			 }
+		 }
 	}
 	
 	public void selectDDByText(WebDriver driver, By locator, String text)
 	{
-		
+		WebElement dd = driver.findElement(locator);
+		 Select dditems = new Select(dd);
+		 List<WebElement> options = dditems.getOptions();
+		 for(WebElement op : options)
+		 {
+			 if(op.getText().equalsIgnoreCase(text))
+			 {
+				 dditems.selectByVisibleText(text);
+				 break;
+			 }
+		 }
 	}
 	
 }

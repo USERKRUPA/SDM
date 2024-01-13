@@ -22,7 +22,21 @@ public class TestWebsite {
 		um.selectCheckBox(driver,By.cssSelector("input[type='checkbox']"), "Hockey");
 		
 		//select one radio button
-		um.selectRadio(driver, By.cssSelector("input[type='radiooptions']"), "FeMale");
+		um.selectRadio(driver, By.cssSelector("input[name='radiooptions']"), "FeMale");
+		
+		//select menu from dropdownlist
+		driver.findElement(By.id("msdd")).click();
+		um.selectLanguage(driver, By.cssSelector("a.ui-corner-all"), "Dutch");
+		
+		//select#country
+		//select country by option value
+		um.selectDDByValue(driver, By.id("country"), "India");
+		
+		//select year for date of birth
+		um.selectDDByText(driver, By.id("yearbox"),"1991");
+		
+		//click on submit button
+		um.
 		
 	}
 }
